@@ -1,0 +1,56 @@
+{% extends 'basket/base.html' %}
+{% load static %}
+{% block title %}Корзина{% endblock %}
+{% block list %}
+{% for item in basket_items %}
+<div class="container">
+    <div class="card col-xl-8 col-md-12 col-lg-10" id="card-basket">
+        <div class="row g-0">
+            <div class="col-md-5">
+                <img id="basket_cart" src="/static/{{ item.product.img }}"
+                     class="img-fluid rounded-start" alt="Photo">
+            </div>
+            <div class="col-md-6">
+                <div class="card-body">
+                    <h5 class="card-title">{{ item.product.title }}</h5>
+                    <p class="card-text">Размер: <b>{{ item.size }}</b></p>
+                    <p class="card-text">Цена за единицу: <b>
+                        {{ item.product.price }}</b>&nbspруб</p>
+                    <p class="card-text">Кол-во: <strong>{{ item.count_size }}
+                    </strong></p>
+                    <button class="btn btn-danger btn-sm">
+                        <a id="cart_del"
+                           style="color: white; text-decoration: none"
+                           href="{% url 'basket:remove' item.pk %}"
+                           class="">удалить</a>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endfor %}
+{% if basket_items %}
+<div class="container " style="margin-bottom: 50px; margin-top: 50px;">
+    <p>Всего к оплате: <strong>{{ basket_items.first.total_cost }}</strong>
+        рублей.</p>
+    <button class="btn btn-secondary text-light border">
+        <a style="text-decoration: none; color: white"
+           href="{% url 'order:order_create' %}">Перейти к покупке</a>
+    </button>
+{% else %}
+{% endif %}
+{% endblock %}
+
+{% block content %}
+<div class="container" style="padding: 0px;">
+    <button class="btn btn-secondary text-light border"
+            style="margin-bottom: 70px; margin-top: 20px;">
+        <a style="text-decoration: none; color: white"
+           href="{% url 'main:main' %}">
+            на главную
+        </a>
+    </button>
+</div>
+{% endblock %}
+

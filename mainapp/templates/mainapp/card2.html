@@ -1,0 +1,28 @@
+{% load static %}
+
+
+<div class="container-xl" style="margin-top: 100px; margin-bottom: 120px;">
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 g-3" style="margin-bottom: 120px;">
+        {% for el in ListOfProduct %}
+        {% csrf_token %}
+        <div class="col" id="col">
+            <div class="card" id="card">
+                <div class="card-img">
+                    <a href="{% url 'product:product' el.id %}"><img
+                            class="img-card"
+                            src="/static/{{ el.img }}"
+                            alt="Ошибка загрузки фото"></a>
+                </div>
+                <div class="card-body">
+                    <h4 class="title">{{ el.title }}</h4>
+                    <p class="card-text">{{el.preview }}</p>
+                </div>
+
+                <div class="card-footer d-flex justify-content-between">
+                    <h3>{{ el.price }}</h3>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>

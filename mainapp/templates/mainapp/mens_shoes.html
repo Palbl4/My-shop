@@ -1,0 +1,7 @@
+{% extends 'mainapp/base.html' %}
+{% block title %}Мужские кроссовки{% endblock %}
+
+{% block content %}
+{% csrf_token %}
+{% include 'mainapp/card2.html' %}
+{% endblock %}

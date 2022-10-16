@@ -1,0 +1,65 @@
+{% extends 'mainapp/base.html' %}
+{% load static %}
+{% block title %}Описание товара{% endblock %}
+
+{% block content %}
+
+<div class="container-lg" style="margin-top: 100px; margin-bottom: 120px;"
+     xmlns="http://www.w3.org/1999/html">
+    <div class="card col-sm-auto">
+        <div class="d-flex justify-content-center">
+            <img id="product-img" src="/static/{{ListOfProduct.img}}"
+                 class="card-img-top"
+                 alt="Фото товара">
+        </div>
+        <div class="card-body" style="min-height: 50px;">
+            <h5 class="card-title">{{ ListOfProduct.title }}</h5>
+            <p class="card-text">{{ ListOfProduct.description }}</p>
+            <h5>Цена: {{ ListOfProduct.price }}</h5>
+        </div>
+        {% if user.is_authenticated %}
+        <div class="input-group"
+             style="padding: 16px;">
+            <div class="d-flex align-items-center">
+                <h5 style="margin-right: 10px;">Выберите размер (EU):</h5>
+            </div>
+            <form action="{% url 'basket:add' ListOfProduct.pk %}"
+                  class="col-lg-offset-4" method="POST">
+                {% csrf_token %}
+                {% for el in ListOfProduct.get_size_range %}
+                <input type="checkbox" id="{{ el }}" value="{{ el }}"
+                       name="size">
+                <label for="{{ el }}">{{ el }}</label>
+                {% endfor %}
+                <input class="btn btn-secondary text-light border"
+                       type="submit" id="product-button"
+                       value="Добавить в корзину" disabled>
+            </form>
+            {% else %}
+            <div class="container"  >
+                <b>Для покупки авторизуйтесь</b>
+                <button class="btn btn-secondary text-light border" style="margin-bottom: 120px;"><a
+                        href="{% url 'auth:login' %}"
+                        style="color: white; text-decoration: none">Вход / Регистрация</a>
+                </button>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="{% static 'js/36.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/37.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/38.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/39.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/40.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/41.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/42.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/43.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/44.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/45.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/46.js' %}"></script>
+
+{% endblock %}
+
+
+

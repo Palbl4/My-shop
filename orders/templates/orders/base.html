@@ -1,0 +1,34 @@
+{% load static %}
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/index.css' %}">
+</head>
+
+<body>
+{% block header %}
+{% include 'mainapp/includes/inc_header.html' %}
+{% endblock %}
+
+
+{% block list %}
+{% endblock %}
+
+{% block content %}
+{% endblock %}
+
+
+
+
+{% block footer %}
+{% include 'mainapp/includes/inc_footer.html' %}
+{% endblock %}
+
+<script src="{% static 'js/bootstrap.bundle.js' %}"></script>
+</body>
+</html>

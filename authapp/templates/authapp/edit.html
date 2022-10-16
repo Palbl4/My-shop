@@ -1,0 +1,28 @@
+{% extends 'authapp/base.html' %}
+{% load static %}
+{% block title %}Редактирование{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="container form-group row" style="margin-top: 80px; margin-bottom: 60px;">
+        <div>
+            <div><h3>Редактирование профиля</h3></div>
+            <form class="col-lg-offset-4  form-horizontal "
+                  action="{% url 'auth:edit' %}" method="post">
+                {% csrf_token %}
+                {{ edit_form.as_p }}
+                {{ profile_form.as_p }}
+                <input class="btn btn-secondary text-light border"
+                       type="submit" value="сохранить">
+
+                <button class="btn btn-secondary text-light border">
+                    <a style="color: white; text-decoration: none;"
+                       href="{% url 'mainapp:main' %}" class="">
+                        на главную
+                    </a>
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

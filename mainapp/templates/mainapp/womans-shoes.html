@@ -1,0 +1,9 @@
+
+{% extends 'mainapp/base.html' %}
+{% load static %}
+{% block title %}Женские кроссовки{% endblock %}
+
+{% block content %}
+{% csrf_token %}
+{% include 'mainapp/card2.html' %}
+{% endblock %}
